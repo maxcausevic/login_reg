@@ -25,7 +25,6 @@
                 <p class="go_back"><a href="/">Refresh</a></p>
             </div>
             </ul>
-            {% endif %}
             <form action="/registration" method="post">
                 {% csrf_token %}
                 <div class="m-3">
@@ -34,7 +33,7 @@
                 </div>
                 {% if messages %}
                 {% for message in messages %}
-                {% if message.extra _tags == 'first_name' %}
+                {% if message.extra_tags == 'first_name' %}
                 <p class ="{{ message.tags }}">{{ message }}</p>
                 {% endif %}
                 {% endfor %}
@@ -46,7 +45,7 @@
                 </div>
                 {% if messages %}
                 {% for message in messages %}
-                {% if message.extra _tags == 'last_name' %}
+                {% if message.extra_tags == 'last_name' %}
                 <p class ="{{ message.tags }}">{{ message }}</p>
                 {% endif %}
                 {% endfor %}
@@ -57,7 +56,7 @@
                 </div>
                 {% if messages %}
                 {% for message in messages %}
-                {% if message.extra _tags == 'reg_email' %}
+                {% if message.extra_tags == 'reg_email' %}
                 <p class ="{{ message.tags }}">{{ message }}</p>
                 {% endif %}
                 {% endfor %}
@@ -68,7 +67,7 @@
                 </div>
                 {% if messages %}
                 {% for message in messages %}
-                {% if message.extra _tags == 'reg_password' %}
+                {% if message.extra_tags == 'reg_password' %}
                 <p class ="{{ message.tags }}">{{ message }}</p>
                 {% endif %}
                 {% endfor %}
@@ -79,7 +78,7 @@
                 </div>
                 {% if messages %}
                 {% for message in messages %}
-                {% if message.extra _tags == 'confirm_password' %}
+                {% if message.extra_tags == 'confirm_password' %}
                 <p class ="{{ message.tags }}">{{ message }}</p>
                 {% endif %}
                 {% endfor %}
@@ -102,7 +101,7 @@
                 </div>
                 {% if messages %}
                 {% for message in messages %}
-                {% if message.extra _tags == 'log_email' %}
+                {% if message.extra_tags == 'log_email' %}
                 <p class ="{{ message.tags }}">{{ message }}</p>
                 {% endif %}
                 {% endfor %}
@@ -113,7 +112,7 @@
                 </div>
                 {% if messages %}
                 {% for message in messages %}
-                {% if message.extra _tags == 'log_password' %}
+                {% if message.extra_tags == 'log_password' %}
                 <p class ="{{ message.tags }}">{{ message }}</p>
                 {% endif %}
                 {% endfor %}

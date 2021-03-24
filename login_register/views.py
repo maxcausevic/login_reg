@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import User
-import bcrypt
 
 def index(request):
     return render(request,'index.html')
@@ -21,13 +20,11 @@ def registration(request):
                 messages.error(request,value, extra_tags='confirm_password')
         return redirect('/')
     else:
-        password = request.POST['reg_password']
-        pw_hash = bcrypt.hashpw(request.POST['reg_password'].encode(), bcrypt.gensalt()).decode()
         user = User.objects.create(
             first_name = request.POST['first_name'],
             last_name = request.POST['last_name'],
             email = request.POST['reg_email'],
-            password = pw_hash
+            password = request.POST['reg_password']
         )
         request.session['user_id'] = user.id 
         return redirect('/success')
@@ -53,8 +50,8 @@ def login(request):
             messages.error(request,"we could not find a  user with that email address", extra_tags='log_email')
         else:
             user = user_list[0]
-            if bcrypt.checkpw(request.POST['log_password'].encode(), user.password.encode()):
-                request.sesion['user_id'] = user_id
+            if request.POST['log_password'] == user.password:
+                request.session['user_id'] = user.id
                 return redirect('/success')
             else:
                 messages.error(request, "your password was incorrect", extra_tags="log_password")
